@@ -6,17 +6,19 @@ let progress = document.getElementById("progress");
 let timeFormat = document.getElementById("time-format");
 
 // Set Current Time Function
-let setCurrentTine = () => {
+let setCurrentTime = () => {
   let date = new Date();
   let hr = date.getHours();
   let min = date.getMinutes();
   let sec = date.getSeconds();
 
-  if (hr >= 12) {
+  let timeFormatNow = hr >= 12 ? "PM" : "AM";
+  timeFormat.innerHTML = timeFormatNow;
+
+  if (hr > 12) {
     hr = hr - 12;
-    timeFormat.innerHTML = "PM";
   }
-  if (hr == 0) {
+  if (hr == 00) {
     hr = 12;
   }
 
@@ -27,4 +29,4 @@ let setCurrentTine = () => {
   progress.style.width = (sec / 60) * 100 + "%";
 };
 
-setInterval(setCurrentTine, 1000);
+setInterval(setCurrentTime, 1000);
